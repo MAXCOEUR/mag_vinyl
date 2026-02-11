@@ -1,0 +1,22 @@
+meta {
+  name: put un groupes
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/groups/698c92878e0e7a7a4ceb81be
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "formationYear": 2004
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

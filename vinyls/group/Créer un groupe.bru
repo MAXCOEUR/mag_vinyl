@@ -1,0 +1,24 @@
+meta {
+  name: Créer un groupe
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/groups
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Daft Punk",
+    "genre": "Electronic",
+    "formationYear": 1993
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

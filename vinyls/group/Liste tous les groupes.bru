@@ -1,0 +1,20 @@
+meta {
+  name: Liste tous les groupes
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/groups
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OThjOWU2MTJkNmQyZmQxNzZmZmMyYzMiLCJlbWFpbCI6Im1heEBtYXguZnIiLCJleHAiOjE3NzA4MjQ1MjJ9.HssqLGc_wYrqhmm9l3S68zeUV_8OPMzHP_De5pcSzNs
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

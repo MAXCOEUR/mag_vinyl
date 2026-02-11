@@ -1,0 +1,22 @@
+meta {
+  name: Modifier un Vinyl
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/vinyls/698c9a0ecf7d0aa8c2c71dc9
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "status": "usé"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

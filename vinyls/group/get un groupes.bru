@@ -1,0 +1,16 @@
+meta {
+  name: get un groupes
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/groups/698c92878e0e7a7a4ceb81be
+  body: json
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

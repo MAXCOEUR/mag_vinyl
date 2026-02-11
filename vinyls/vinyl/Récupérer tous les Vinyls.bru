@@ -1,0 +1,25 @@
+meta {
+  name: Récupérer tous les Vinyls
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/vinyls?sort=-price
+  body: none
+  auth: bearer
+}
+
+params:query {
+  sort: -price
+  ~title: Discovery
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OThjOWU2MTJkNmQyZmQxNzZmZmMyYzMiLCJlbWFpbCI6Im1heEBtYXguZnIiLCJleHAiOjE3NzA4MjQxNDF9.GfbNsmvhqGSizCzjAdGsOV9W2Z_iBCWeVOEIx68uQ_8
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

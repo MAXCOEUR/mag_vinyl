@@ -1,0 +1,26 @@
+meta {
+  name: Créer un Vinyl
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/vinyls
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "Discovery",
+    "releaseDate": "2001-03-12",
+    "status": "bon",
+    "price": 35.99,
+    "groupId": "698c91fa8e0e7a7a4ceb81bc"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

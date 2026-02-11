@@ -1,0 +1,21 @@
+meta {
+  name: get les vinyl d'un groupes
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/groups/698c91fa8e0e7a7a4ceb81bc/vinyls?sort=-price
+  body: json
+  auth: inherit
+}
+
+params:query {
+  sort: -price
+  ~status: neuf
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
