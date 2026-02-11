@@ -1,0 +1,25 @@
+lien github : https://github.com/MAXCOEUR/mag_vinyl
+lire le readme.md pour commande lancer l'api
+shema bdd : schema.png / role.png/ user.png/ groupe.png et vinyl.png
+post man le collection dans le fichier vinyles/collection.bru
+
+Question : 
+1/ PUT & PATCH
+PUT : Remplace la ressource entièrement. Tu dois envoyer tout l'objet.
+PATCH : Effectue une modification partielle. Tu n'envoies que les champs à modifier (ex: juste le stock).
+
+2/ FETCH/AXIOS (Le CORS)
+C'est à cause de la politique CORS (Cross-Origin Resource Sharing).
+Postman est un client lourd qui ignore les restrictions de sécurité du navigateur.
+Firefox bloque la requête car ton API n'autorise pas explicitement l'origine (domaine) de ton application front-end via les headers HTTP.
+
+3/ NGINX/APACHE
+On utilise un Reverse Proxy devant Node pour :
+Sécurité : Masquer l'architecture interne et gérer le SSL/TLS (HTTPS) plus efficacement.
+Performances : Gérer les fichiers statiques (images, CSS) sans charger Node.
+Load Balancing : Répartir le trafic entre plusieurs instances de ton API.
+
+4/ PERFORMANCES (3 axes)
+Pagination : Utiliser limit et skip (ou cursor) pour ne pas charger des milliers de documents d'un coup.
+Indexation MongoDB : Créer des index sur les champs souvent recherchés (ex: email, groupId) pour accélérer les requêtes.
+Mise en cache (Caching) : Utiliser Redis ou des headers Cache-Control pour éviter de recalculer/requêter des données qui ne changent pas souvent.
