@@ -4,22 +4,22 @@ shema bdd : schema.png / role.png/ user.png/ groupe.png et vinyl.png
 post man le collection dans le fichier vinyles/collection.bru
 
 Question : 
-1/ PUT & PATCH
-PUT : Remplace la ressource entièrement. Tu dois envoyer tout l'objet.
-PATCH : Effectue une modification partielle. Tu n'envoies que les champs à modifier (ex: juste le stock).
+1/ Méthodes HTTP : PUT vs PATCH
+PUT (Remplacement) : Remplace la ressource cible dans sa totalité. L'objet envoyé écrase l'ancien. Si un champ est omis, il peut être supprimé ou réinitialisé par le serveur.
+PATCH (Modification) : Applique une modification partielle. On ne transmet que les données à mettre à jour (ex: seulement le champ prix ou stock).
 
-2/ FETCH/AXIOS (Le CORS)
-C'est à cause de la politique CORS (Cross-Origin Resource Sharing).
-Postman est un client lourd qui ignore les restrictions de sécurité du navigateur.
-Firefox bloque la requête car ton API n'autorise pas explicitement l'origine (domaine) de ton application front-end via les headers HTTP.
+2/ Sécurité & Navigateur : Le CORS
+Définition : Le Cross-Origin Resource Sharing est une sécurité appliquée par le navigateur. Elle empêche un script provenant d'un domaine A d'accéder aux ressources d'un domaine B sans permission explicite.
+Comportement : Firefox (ou Chrome) bloque la requête si l'API ne renvoie pas les headers Access-Control-Allow-Origin autorisant le front-end.
+Outils tiers : Postman ou Insomnia ne sont pas des navigateurs ; ils ignorent donc ces restrictions de sécurité, ce qui explique pourquoi la requête peut fonctionner sur Postman mais échouer sur un site web.
 
-3/ NGINX/APACHE
-On utilise un Reverse Proxy devant Node pour :
-Sécurité : Masquer l'architecture interne et gérer le SSL/TLS (HTTPS) plus efficacement.
-Performances : Gérer les fichiers statiques (images, CSS) sans charger Node.
-Load Balancing : Répartir le trafic entre plusieurs instances de ton API.
+3/ Architecture : Reverse Proxy (Nginx/Apache)
+Placer un serveur comme Nginx devant une application Node.js répond à trois besoins :
+Sécurité : Masquage de l'IP du serveur applicatif et gestion centralisée du SSL/TLS (HTTPS).
+Performance : Prise en charge des fichiers statiques (CSS, images, JS) pour décharger Node.js.
+Évolutivité (Load Balancing) : Répartition de la charge entre plusieurs instances du serveur pour éviter la saturation.
 
-4/ PERFORMANCES (3 axes)
-Pagination : Utiliser limit et skip (ou cursor) pour ne pas charger des milliers de documents d'un coup.
-Indexation MongoDB : Créer des index sur les champs souvent recherchés (ex: email, groupId) pour accélérer les requêtes.
-Mise en cache (Caching) : Utiliser Redis ou des headers Cache-Control pour éviter de recalculer/requêter des données qui ne changent pas souvent.
+4/ Optimisation des Performances
+Pagination : Utilisation de limit et skip (ou pagination par curseur) pour ne traiter que de petits segments de données à la fois.
+Indexation (MongoDB) : Création d'index sur les champs fréquemment consultés (ex: email, id_utilisateur) pour éviter le scan intégral de la collection.
+Mise en cache (Caching) : Utilisation de Redis (stockage en RAM) ou de headers Cache-Control pour servir instantanément des données qui changent peu, sans solliciter la base de données.
